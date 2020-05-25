@@ -26,4 +26,4 @@ The program expect the following input data in this order:
 
 
 
-Credit to Marco Giordano for sharing his code. Some slight modifications have taken place on the application to account for Face Detection
+Credits to Marco Giordano for sharing his code. Some slight modifications have taken place on the application to account for Face Detection
