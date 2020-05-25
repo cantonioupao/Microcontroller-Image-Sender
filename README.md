@@ -22,3 +22,7 @@ The program expect the following input data in this order:
 * Uint8_t for the class number
 * Float_32 for the inference accuracy
 * Uint32_t for the cycle count
+
+
+
+Credit to Marco for sharing his code. Some slight modifications have taken place on the application to account for Face Detection
