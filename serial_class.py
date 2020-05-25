@@ -42,7 +42,7 @@ class Serial:
             return data_as_float
         else:
             return -1 # No data in buffer
-    
+    '''Start: Add 16bit integer number support'''
     def serial_receive_16bit_uint(self):
         if(self.serialPort.in_waiting >= 2):
             serialString = self.serialPort.read(2)
@@ -51,6 +51,7 @@ class Serial:
             return data_as_int16
         else:
             return -1 # No data in buffer
+    '''End'''
 
     def get_serial_status(self):
         return self.serialPort.is_open
