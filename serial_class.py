@@ -42,6 +42,15 @@ class Serial:
             return data_as_float
         else:
             return -1 # No data in buffer
+    
+    def serial_receive_16bit_uint(self):
+        if(self.serialPort.in_waiting >= 2):
+            serialString = self.serialPort.read(2)
+            data_bytes = np.array(serialString)
+            data_as_int16 = data_bytes.view(dtype=np.uint16)
+            return data_as_int16
+        else:
+            return -1 # No data in buffer
 
     def get_serial_status(self):
         return self.serialPort.is_open
