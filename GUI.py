@@ -80,6 +80,12 @@ class GUI:
         infered_class = self.Serial.serial_receive_int()
         accuracy = self.Serial.serial_receive_float()
         cycles = self.Serial.serial_receive_32bit_uint()
+        '''Start Added Code- Define the BBox output'''
+        bbox_left = self.Serial.serial_receive_16bit_uint()
+        bbox_top = self.Serial.serial_receive_16bit_uint()
+        bbox_width = self.Serial.serial_receive_16bit_uint()
+        bbox_height = self.Serial.serial_receive_16bit_uint()
+        '''End added code'''
         if infered_class != -1:
             self.predicted_label_2.configure(text=str(infered_class))
             if self.labels.shape[-1] != 0:
@@ -113,7 +119,11 @@ class GUI:
         if cycles != -1:
             self.cycle_counter_lbl_display.configure(text=str(cycles))
             self.time_for_inference_lbl_display.configure(text='{:.2f} ms'.format(cycles/80000))
-
+        '''Start Added Part'''    
+        if bbox_left !=-1:
+            self.bbox1_lbl_display.configure(text='({} , {})'.format(bbox_left, bbox_top))
+            self.bbox2_lbl_display.configure(text='({} , {})'.format(bbox_left+bbox_width, bbox_top+bbox_height)) 
+        '''End'''
         self.window.after(100, self.read_from_serial)
 
 
@@ -123,6 +133,9 @@ class GUI:
         self.inputs_I_frm = Frame(master=self.controls_frm)
         self.inputs_II_frm = Frame(master=self.controls_frm)
         self.inputs_III_frm = Frame(master=self.controls_frm)
+        '''add an extra frame'''
+        self.inputs_IV_frm=Frame(master=self.controls_frm)
+        '''End'''
 
         self.metrics_frm = Frame(master=self.window)
 
@@ -176,7 +189,13 @@ class GUI:
         self.next_image_btn = Button(text="Send image", command=self.next_image, master=self.buttons_frm)
         self.start_burst_btn = Button(text="Berserk mode", command=self.berserk_button, master=self.buttons_frm)
 
-        self.self_bragging_lbl = Label(text="Image sender by Marco Giordano", master=self.mode_frm)
+        self.self_bragging_lbl = Label(text="Image sender by Marco Giordano & Christos Antoniou (Face Detection)", master=self.mode_frm)
+        '''Start Adding Code'''
+        self.bbox1_lbl = Label(text= 'BBox Starting point (x1,y1):', master =self.metrics_frm)
+        self.bbox2_lbl = Label(text= 'BBox Ending point (x2,y2):', master =self.metrics_frm)
+        self.bbox2_lbl_display = Label(text='---', master=self.metrics_frm)
+        self.bbox2_lbl_display = Label(text='---',master=self.metrics_frm)
+        '''End'''
     
     def image_show_init(self):
         fig = Figure(figsize=(3, 3), dpi=100)
@@ -225,6 +244,12 @@ class GUI:
         self.accuracy_lbl_display.grid(row=1, column=3, padx=5, pady=10)
         self.cycle_counter_lbl_display.grid(row=2, column=1, padx=5, pady=10)
         self.time_for_inference_lbl_display.grid(row=2, column=3, padx=5, pady=10)
+        '''Start Adding new Code'''
+        self.bbox1_lbl.grid(row=3, column=0, padx=5, pady=10)
+        self.bbox2_lbl_display.grid(row=3, column=1, padx=5, pady=10)
+        self.bbox2_lbl.grid(row=3, column=2, padx=5, pady=10)
+        self.bbox2_lbl_display.grid(row=3, column=3, padx=5, pady=10)
+        '''End '''
 
         self.canvas.get_tk_widget().grid(row=0, column=0)
 
@@ -240,6 +265,9 @@ class GUI:
         self.inputs_I_frm.grid(row=0, column=0)
         self.inputs_II_frm.grid(row=1, column=0)
         self.inputs_III_frm.grid(row=2, column=0)
+        '''add inputs frame'''
+        #use the metrics_frm to add all your information
+        '''End'''
 
         self.metrics_frm.grid(row=1, column=1)
 
