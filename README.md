@@ -27,8 +27,8 @@ The program expect the following input data in this order:
 ## Expected Bounding Box format 
 For Bounding Box coordinates the received format is 
 **[left,top, width , height]** for the bounding box.Then the bounding box starting point is calculated according to 
-**(x1,y1)=(left,top)** and the ending point of the bounding box is **(x2,y2)=(left+width,top+height)**
-The calculations and rectangle display are handled automatically by the application. A red rectangle is displayed on the image, representing the predicted face region from the face detection inference for the current input image
+**(x1,y1)=(left,top)** and the ending point of the bounding box is 
+**(x2,y2)=(left+width,top+height)** .The calculations and rectangle display are handled automatically by the application. A red rectangle is displayed on the image, representing the predicted face region from the face detection inference for the current input image
 
 
 
