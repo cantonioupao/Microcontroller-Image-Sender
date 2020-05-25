@@ -4,7 +4,7 @@ from GUI import *
 window = Tk()
 
 window.title("Serial Image Sender")
-window.iconbitmap("asset/MG_Logo_Cropped.ico")
+window.iconbitmap("asset/Pao_cA1_icon.ico")
 
 gui = GUI(window)
 gui.UI_init()
