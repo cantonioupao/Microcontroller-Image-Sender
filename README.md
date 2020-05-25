@@ -4,7 +4,7 @@ Introducing a simple Python GUI to resize and send via serial images to microcon
 ![GUI of the sender](/asset/screenshot_main.jpg)
 
 ## How to use
-To use this tool you have to install the packages in requirement.txt (you can do that via `pip install -r requirement.txt`) and then run `python Serial_Image_Sender_GUI.py`. The GUI will open and you can access all the functionalities of the program without a single line of code.
+To use this tool you have to install the packages in requirement.txt (you can do that via `pip install -r requirements.txt`) and then run `python Serial_Image_Sender_GUI.py`. The GUI will open and you can access all the functionalities of the program without a single line of code.
 
 Done that, you should just click Connect! If the button turns green it means that the connection has been established and that images can be sent. Just click on _Next image_ or _Berserk mode_ to send one image or to continously send imges one after another!
 
