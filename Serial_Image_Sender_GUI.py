@@ -9,5 +9,5 @@ window.iconbitmap("asset/Pao_cA1_icon.ico")
 gui = GUI(window)
 gui.UI_init()
 
-window.geometry('720x470')
+window.geometry('820x570')
 window.mainloop()
