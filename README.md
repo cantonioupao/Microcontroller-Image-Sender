@@ -22,8 +22,10 @@ The program expect the following input data in this order:
 * Uint8_t for the class number
 * Float_32 for the inference accuracy
 * Uint32_t for the cycle count
-* Uint32_t for the bounding box coordinates
+* Uint16_t for the bounding box coordinates
+
+For Bounding Box coordinates the received format is [left,top, width , height] for the bounding box. Then the bounding box starting point is calculated according to (x1,y1)=(left,top) and the ending point of the bounding box is (x2,y2)=(left+width,top+height). The calculations and rectangle display are handled automatically by the application. A red rectangle is displayed on the image, representing the predicted face region from the face detection inference for the current input image
 
 
 
-Credits to Marco Giordano for sharing his code. Some slight modifications have taken place on the application to account for Face Detection
+Credits to Marco Giordano for sharing his code. Some slight modifications have taken place on the code to account for Face Detection
