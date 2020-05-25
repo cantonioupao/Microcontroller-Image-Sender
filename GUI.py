@@ -3,6 +3,7 @@ from tkinter import *
 from serial_class import *
 
 import numpy as np
+import cv2
 
 import matplotlib
 matplotlib.use("TkAgg")
@@ -19,6 +20,12 @@ class GUI:
         self.window = window
         self.Serial = Serial("COM3")
         self.all_inference=0
+        '''Start: Add the bbox coordinates when initializing'''
+        self.bbox_left = 0 #set them to 0 in order to not show any rectangle at the beginning
+        self.bbox_top = 0
+        self.bbox_width = 0
+        self.bbox_height = 0
+        '''End'''
         self.correct_inference=0
         self.berserk_mode = 0
 
@@ -81,10 +88,10 @@ class GUI:
         accuracy = self.Serial.serial_receive_float()
         cycles = self.Serial.serial_receive_32bit_uint()
         '''Start Added Code- Define the BBox output'''
-        bbox_left = self.Serial.serial_receive_16bit_uint()
-        bbox_top = self.Serial.serial_receive_16bit_uint()
-        bbox_width = self.Serial.serial_receive_16bit_uint()
-        bbox_height = self.Serial.serial_receive_16bit_uint()
+        self.bbox_left = self.Serial.serial_receive_16bit_uint()
+        self.bbox_top = self.Serial.serial_receive_16bit_uint()
+        self.bbox_width = self.Serial.serial_receive_16bit_uint()
+        self.bbox_height = self.Serial.serial_receive_16bit_uint()
         '''End added code'''
         if infered_class != -1:
             self.predicted_label_2.configure(text=str(infered_class))
@@ -123,6 +130,15 @@ class GUI:
         if bbox_left !=-1:
             self.bbox1_lbl_display.configure(text='({} , {})'.format(bbox_left, bbox_top))
             self.bbox2_lbl_display.configure(text='({} , {})'.format(bbox_left+bbox_width, bbox_top+bbox_height)) 
+        '''End'''
+        
+        
+        '''Start: Add rectangle to image'''
+        self.image = cv2.rectangle(self.image, (bbox_left,bbox_top),(bbox_left+bbox_width,bbox_top+bbox_height),(255, 0, 0),1)
+        #corresponding to (x1,y1) and (x2,y2), BGR , thickness
+        self.ax.clear()
+        self.ax.imshow(self.image)
+        self.canvas.draw()
         '''End'''
         self.window.after(100, self.read_from_serial)
 
