@@ -13,7 +13,7 @@ Done that, you should just click Connect! If the button turns green it means tha
 The GUI only requires a path to the test images folder and the COM port of the microcontroller.
 Additionally, you can provide:
 * The ground truth values: the file should contain in the first line the classes values separated by comma and then class numbers every new line
-* Image annotations: some datasets provide X and Y coordinates of the most important part of an image. The sender can understand from this file those positions and crop accordingly the image. The file format should be X1,Y1,X2,Y2, with each entry separated by a new line.
+* Image annotations: some datasets provide X and Y coordinates of the most important part of an image. The sender can understand from this file those positions and crop accordingly the image. The file format should be X1,Y1,X2,Y2, with each entry separated by a new line.In Face Detection the bounding box coordinates can be given for the ground truth of an image
 * Image resizing: you can resize the image to the entered pixel values. In case you don't want to resize the image please enter -1 in at least one of the resize boxes
 
 ## What should I send via serial?
@@ -22,7 +22,8 @@ The program expect the following input data in this order:
 * Uint8_t for the class number
 * Float_32 for the inference accuracy
 * Uint32_t for the cycle count
+* Uint32_t for the bounding box coordinates
 
 
 
-Credit to Marco for sharing his code. Some slight modifications have taken place on the application to account for Face Detection
+Credit to Marco Giordano for sharing his code. Some slight modifications have taken place on the application to account for Face Detection
