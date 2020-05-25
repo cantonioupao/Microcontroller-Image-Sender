@@ -22,7 +22,10 @@ The program expect the following input data in this order:
 * Uint8_t for the class number
 * Float_32 for the inference accuracy
 * Uint32_t for the cycle count
-* Uint16_t for the bounding box coordinates
+* Uint16_t for the bounding box left pixel coordinate
+* Uint16_t for the bounding box top pixel coordinate
+* Uint16_t for the bounding box width
+* Uint16_t for the bounding box height
 
 ## Expected Bounding Box format 
 For Bounding Box coordinates the received format is 
