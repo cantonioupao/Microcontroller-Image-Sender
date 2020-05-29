@@ -16,6 +16,7 @@ class GUI:
     def __init__(self, window):
         self.i = 0
         self.image_list = []
+        self.image = 0
         self.directory = ""
         self.window = window
         self.Serial = Serial("COM3")
@@ -127,14 +128,14 @@ class GUI:
             self.cycle_counter_lbl_display.configure(text=str(cycles))
             self.time_for_inference_lbl_display.configure(text='{:.2f} ms'.format(cycles/80000))
         '''Start Added Part'''    
-        if bbox_left !=-1:
-            self.bbox1_lbl_display.configure(text='({} , {})'.format(bbox_left, bbox_top))
-            self.bbox2_lbl_display.configure(text='({} , {})'.format(bbox_left+bbox_width, bbox_top+bbox_height)) 
+        if self.bbox_left !=-1:
+            self.bbox1_lbl_display.configure(text='({} , {})'.format(self.bbox_left, self.bbox_top))
+            self.bbox2_lbl_display.configure(text='({} , {})'.format(self.bbox_left+self.bbox_width, self.bbox_top+self.bbox_height)) 
         '''End'''
         
         
         '''Start: Add rectangle to image'''
-        self.image = cv2.rectangle(self.image, (bbox_left,bbox_top),(bbox_left+bbox_width,bbox_top+bbox_height),(255, 0, 0),1)
+        self.image = cv2.rectangle(self.image, (self.bbox_left,self.bbox_top),(self.bbox_left+self.bbox_width,self.bbox_top+self.bbox_height),(255, 0, 0),1)
         #corresponding to (x1,y1) and (x2,y2), BGR , thickness
         self.ax.clear()
         self.ax.imshow(self.image)
@@ -205,12 +206,12 @@ class GUI:
         self.next_image_btn = Button(text="Send image", command=self.next_image, master=self.buttons_frm)
         self.start_burst_btn = Button(text="Berserk mode", command=self.berserk_button, master=self.buttons_frm)
 
-        self.self_bragging_lbl = Label(text="Image sender by Marco Giordano & Christos Antoniou (Face Detection)", master=self.mode_frm)
+        self.self_bragging_lbl = Label(text="Image sender by Marco Giordano (Face Detection extension by Christos Antoniou)", master=self.mode_frm)
         '''Start Adding Code'''
         self.bbox1_lbl = Label(text= 'BBox Starting point (x1,y1):', master =self.metrics_frm)
         self.bbox2_lbl = Label(text= 'BBox Ending point (x2,y2):', master =self.metrics_frm)
-        self.bbox2_lbl_display = Label(text='---', master=self.metrics_frm)
-        self.bbox2_lbl_display = Label(text='---',master=self.metrics_frm)
+        self.bbox1_lbl_display = Label(text='', master=self.metrics_frm)
+        self.bbox2_lbl_display = Label(text='',master=self.metrics_frm)
         '''End'''
     
     def image_show_init(self):
@@ -262,7 +263,7 @@ class GUI:
         self.time_for_inference_lbl_display.grid(row=2, column=3, padx=5, pady=10)
         '''Start Adding new Code'''
         self.bbox1_lbl.grid(row=3, column=0, padx=5, pady=10)
-        self.bbox2_lbl_display.grid(row=3, column=1, padx=5, pady=10)
+        self.bbox1_lbl_display.grid(row=3, column=1, padx=5, pady=10)
         self.bbox2_lbl.grid(row=3, column=2, padx=5, pady=10)
         self.bbox2_lbl_display.grid(row=3, column=3, padx=5, pady=10)
         '''End '''
