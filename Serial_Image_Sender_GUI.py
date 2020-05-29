@@ -4,10 +4,10 @@ from GUI import *
 window = Tk()
 
 window.title("Serial Image Sender")
-window.iconbitmap("asset/Pao_cA1_icon.ico")
+window.iconbitmap("asset/eth_icon.ico")
 
 gui = GUI(window)
 gui.UI_init()
 
-window.geometry('820x570')
+window.geometry('900x670')
 window.mainloop()
