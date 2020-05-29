@@ -1,7 +1,7 @@
 # Microcontroller-Image-Sender
 Introducing a simple Python GUI to resize and send via serial images to microcontrollers
 
-![GUI of the sender](/asset/screenshot_main.jpg)
+![GUI of the sender](/asset/screenshot_main2.jpg)
 
 ## How to use
 To use this tool you have to install the packages in requirement.txt (you can do that via `pip install -r requirements.txt`) and then run `python Serial_Image_Sender_GUI.py`. The GUI will open and you can access all the functionalities of the program without a single line of code.
