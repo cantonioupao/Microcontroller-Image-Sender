@@ -36,4 +36,4 @@ The calculations and rectangle display are handled automatically by the applicat
 
 
 
-Credits to  **Marco Giordano** for sharing his code. Some slight modifications have taken place on the code to account for Face Detection
+Credits to  **Marco Giordano** for sharing his code. Some slight modifications have taken place on the code to account for Face Detection. Project originally transplanted from **SixAxis9** under:**https://github.com/Sixaxis9/Microcontroller-Image-Sender**
